@@ -1,0 +1,55 @@
+注文確認画面
+
+<table>
+<tr>
+    <th> 商品名 </th>
+    <th></th>
+    <th> 単価</th>
+    <th> 数量 </th>
+    <th></th>
+    <th> 小計 </th>
+ </tr>
+ <% @items.each do |item| %>
+     <tr>
+         <th><%= item.item.name %></th>
+         <th><%= item.item.price %></th>
+         <th><%= item.amount %></th>
+         <th><%= (item.amount * item.item.price).round %></th>
+     </tr>
+ <% end %>
+ </table>
+
+ <table>
+     <tr>
+         <th>送料</th>
+         <th>800円</th>
+     </tr>
+      <tr>
+         <th>商品合計</th>
+         <th><%= @order.billing_amount %></th>
+     </tr>
+     <tr>
+         <th>請求金額</th>
+         <th><%= @order.billing_amount - 800 %></th>
+     </tr>
+ </table>
+
+ <p>支払い方法</p>
+ <%= @order.payment_i18n %>
+
+ <p>お届け先</p>
+ 〒<%= @order.postal_code %>
+ <%= @order.adress %>
+ <%= @order.name %>
+
+ <%= form_with model: @order, url: orders_path do |f| %>
+     <%= f.hidden_field :end_user_id, :value => @order.end_user_id %>
+     <%= f.hidden_field :billing_amount, :value => @order.billing_amount %>
+     <%= f.hidden_field :name, :value => @order.name %>
+     <%= f.hidden_field :adress, :value => @order.adress %>
+     <%= f.hidden_field :payment, :value => @order.payment %>
+     <%= f.hidden_field :postal_code, :value => @order.postal_code %>
+ <%= f.submit "注文を確定する", "data-confirm" => "本当に確定しますか？" %>
+
+
+ <% end %>

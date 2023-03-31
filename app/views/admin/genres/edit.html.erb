@@ -1,0 +1,8 @@
+<p>ジャンル編集</p>
+
+<%= form_with model: @genre, url: admin_genre_path do |f| %>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.submit %>
+<% end %>

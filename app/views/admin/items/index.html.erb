@@ -1,0 +1,27 @@
+<p>商品一覧</p>
+ <th><%= link_to "商品登録", new_admin_item_path %></th>
+
+<table>
+  <tr>
+    <th>商品ID</th>
+    <th>商品名</th>
+    <th>税抜価格</th>
+    <th>ジャンル</th>
+    <th>販売ステータス</th>
+  </tr>
+  <% @items.each do |item| %>
+    <tr>
+      <th><%= item.id %></th>
+      <th><%=link_to item.name, admin_item_path(item) %></th>
+      <th><%= item.price %></th>
+      <th><%= item.genre.name %></th>
+      <th>
+        <% if item.is_sales == true %>
+          販売中
+        <% else %>
+          販売停止中
+        <% end %>
+      </th>
+    </tr>
+  <% end %>
+</table>

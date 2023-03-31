@@ -1,0 +1,42 @@
+<h1>注文履歴詳細</h1>
+  <p>購入者</p>
+  <%= @order.end_user.second_name + @order.end_user.first_name %>
+  <p>注文日</p>
+  <%= @order.created_at %>
+  <p>配送先</p>
+  <%= @order.adress %>
+  <p>支払い方法</p>
+  <%= @order.payment_i18n %>
+  <p>注文ステータス</p>
+    <%= form_with(model: @order, url: admin_order_path(@order), method: :patch, local: true) do |f| %>
+       <%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]}, selected: @order.order_status %>
+    <%= f.submit "更新"%>
+    <%end%>
+
+
+<table>
+  <tr>
+    <th>商品名</th>
+    <th>単価(税込）</th>
+    <th>数量</th>
+    <th>小計</th>
+    <th>製作ステータス</th>
+  </tr>
+  <% @order_details.each do |order_detail| %>
+    <tr>
+      <th><%= order_detail.item.name %></th>
+      <th><%= order_detail.price %></th>
+      <th><%= order_detail.amount %></th>
+      <th><%= order_detail.order.billing_amount %></th>
+      <th><%= form_with(model: [@order,order_detail], url: admin_order_order_detail_path(@order, order_detail), method: :patch, local: true) do |f| %>
+              <%= f.select :production_status, OrderDetail.production_statuses.keys.map {|k| [I18n.t("enums.order_details.production_status.#{k}"), k]} , selected: order_detail.production_status %>
+              <%= f.submit "更新"%>
+          <%end%>
+      </th>
+
+      </tr>
+      </table>
+
+
+  <%end%>
+

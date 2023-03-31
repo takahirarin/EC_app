@@ -1,0 +1,29 @@
+<div>注文情報入力</div>
+
+      <%= form_with model: @order, url: confirm_path, local: true do |f| %>
+      <b>支払い方法</b>
+                <p><%= f.collection_radio_buttons :payment, Order.payments_i18n, :first, :last %></p>
+        <!--f.collection_radio_buttons [データを保存するカラム], [コレクション], [ラジオボタンのvalue値] , [ラジオボタンのテキストになる値]-->
+      <b>お届け先</b>
+
+            <p>
+               <div> <%= f.radio_button :address_option, "0" %>ご自身の住所</div>
+                     <div>〒<%= @user.postal_code %></div>
+                     <div><%= @user.address %></div>
+                     <div><%= @user.second_name %><%= @user.first_name %></div>
+
+            </p>
+            <p>
+                <div><%= f.radio_button :address_option, "1" %>登録済住所から選択</div>
+                 <%= f.select :adress, @user.addresses.all.map { |address| [address.name, address.addresses] } %>
+            </p>
+            <p>
+                <div><%= f.radio_button :address_option, "2" %>新しいお届け先</div>
+                <div>郵便番号<%=f.text_field :postal_code %></div>
+                <div>住所<%=f.text_field :adress %></div>
+                <div>宛名<%=f.text_field :name %></div>
+            </p>
+
+            <%= f.submit '確認画面へ進む' %>
+
+        <% end %>

@@ -1,0 +1,31 @@
+<p>新規商品登録</p>
+
+<%= form_with model: @item, url: admin_items_path do |f| %>
+<div>
+ <%= f.attachment_field :image %>
+</div>
+<div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+</div>
+<div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+</div>
+<div>
+    <%= f.select :genre_id, Genre.all.map { |genre| [genre.name, genre.id] } %>
+</div>
+<div>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+</div>
+<div>
+    <%= f.label :is_sales, '販売中' %>
+    <%= f.radio_button :is_sales, :true %>
+    <%= f.label :is_sales, '販売停止中' %>
+    <%= f.radio_button :is_sales, :false %>
+</div>
+<div>
+    <%= f.submit %>
+</div>
+<% end %>

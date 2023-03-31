@@ -1,0 +1,22 @@
+<p>会員一覧</p>
+<table>
+  <tr>
+    <td>会員ID</td>
+    <td>氏名</td>
+    <td>メールアドレス</td>
+    <td>ステータス</td>
+  </tr>
+  <% @end_users.each do |user| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= user.second_name %> <%= user.first_name %> </td>
+    <td><%= user.email %></td>
+    <td><% if user.is_deleted == true %>
+          有効
+        <%else%>
+          無効
+        <%end%>
+    </td>
+  </tr>
+  <% end %>
+</table>

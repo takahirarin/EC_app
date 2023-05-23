@@ -5,7 +5,4 @@
 
 フレームワークとしてruby on railsを使用
 
- docker compose build
- docker compose up
- 
-で実行可能です。
+

@@ -1,25 +1,29 @@
-<p>商品詳細</p>
-<%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
-<table>
-  <tr>
-    <th></th>
-    <th>商品名</th>
-    <th>商品説明</th>
-    <th>税抜価格</th>
-    <th>個数</th>
-  </tr>
+<div class="container">
+    <div class="row">
+  <p>商品詳細</p>
+  <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
+  <table>
     <tr>
-      <th><%= attachment_image_tag @item, :image, size: "100x100" %></th>
-      <th><%= @item.name %></th>
-      <th><%= @item.description %></th>
-      <th><%= @item.price*(1.1).round %><%="円（税込）"%></th>
-      <!--/*丸めメソッド、round*/-->
-
-      <th><%= f.select :amount, [1,2,3,4,5,6,7,8,9,10] %></th>
-      <th><%= f.hidden_field :item_id, :value => @item.id %></th>
-      <th><%= f.submit "カートに入れる" %></th>
-
-
+      <th></th>
+      <th>商品名</th>
+      <th>商品説明</th>
+      <th>税抜価格</th>
+      <th>個数</th>
     </tr>
-</table>
-  <% end %>
+      <tr>
+        <th><%= attachment_image_tag @item, :image, size: "100x100" %></th>
+        <th><%= @item.name %></th>
+        <th><%= @item.description %></th>
+        <th><%= @item.price*(1.1).round %><%="円（税込）"%></th>
+        <!--/*丸めメソッド、round*/-->
+
+        <th><%= f.select :amount, [1,2,3,4,5,6,7,8,9,10] %></th>
+        <th><%= f.hidden_field :item_id, :value => @item.id %></th>
+        <th><%= f.submit "カートに入れる" %></th>
+
+
+      </tr>
+  </table>
+    <% end %>
+  </div>
+</div>

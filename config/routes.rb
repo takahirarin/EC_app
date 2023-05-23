@@ -25,7 +25,7 @@ Rails.application.routes.draw do
         get 'orders/done', to: 'orders#done', as: 'done'
         resources :orders, :only => [:new, :create, :index, :show]
         resources :addresses,:only => [:index, :create, :update, :edit, :destroy]
-        get 'search', to: 'search#search', as: 'search'
+        get 'search/:id', to: 'search#search', as: 'search'
 
 
       end

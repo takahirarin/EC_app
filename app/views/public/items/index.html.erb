@@ -1,13 +1,21 @@
-<%= render "layouts/genre_search", genres: Genre.all %>
+<div class="container">
+    <div class="row">
+            <strong><%= notice %></strong>
+            <%= render "layouts/genre_search", genres: Genre.all %>
 
-<p>商品一覧</p>
+      <div class="col-md-10">
+        <h2><i class="fas fa-cookie-bite"></i>商品一覧<span style="font-size:20px;">（全<%= Item.all.count %>件）</span></h2>
+        <br></br>
+          <% @items.each do |item| %>
+            <table>
+              <tr>
+                <th><%= attachment_image_tag item, :image, size: "100x100" %></th>
+                <th><%=link_to item.name, item_path(item)%></th>
+                <th><%= item.price %></th>
+              </tr>
+            </table>
+          <% end %>
+      </div>
+    </div>
+</div>
 
-<% @items.each do |item| %>
-<table>
-  <tr>
-    <th><%= attachment_image_tag item, :image, size: "100x100" %></th>
-    <th><%=link_to item.name, item_path(item)%></th>
-    <th><%= item.price %></th>
-  </tr>
-</table>
-<% end %>

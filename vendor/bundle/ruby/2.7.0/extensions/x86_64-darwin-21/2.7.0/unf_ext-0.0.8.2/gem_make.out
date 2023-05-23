@@ -1,0 +1,16 @@
+current directory: /Users/takahirarin/Desktop/programming/ec_app/EC_app/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.8.2/ext/unf_ext
+/Users/takahirarin/.rbenv/versions/2.7.8/bin/ruby -I /Users/takahirarin/.rbenv/versions/2.7.8/lib/ruby/2.7.0 -r ./siteconf20230523-41686-17m7nf4.rb extconf.rb
+checking for -lstdc++... yes
+creating Makefile
+
+current directory: /Users/takahirarin/Desktop/programming/ec_app/EC_app/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.8.2/ext/unf_ext
+make "DESTDIR=" clean
+
+current directory: /Users/takahirarin/Desktop/programming/ec_app/EC_app/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.8.2/ext/unf_ext
+make "DESTDIR="
+compiling unf.cc
+linking shared-object unf_ext.bundle
+
+current directory: /Users/takahirarin/Desktop/programming/ec_app/EC_app/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.8.2/ext/unf_ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 unf_ext.bundle ./.gem.20230523-41686-13j7tih
